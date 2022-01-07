@@ -1,23 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import {useDatasource} from "./service/datasource";
+import {WordCardList} from "./components/word-card-list";
+
+
+/******************************************************************************/
+// style
+
+const grid = {
+  gutter: 16,
+  xs: 1,
+  sm: 2,
+  md: 4,
+  lg: 4,
+  xl: 6,
+  xxl: 3,
+};
+
+/******************************************************************************/
+
+
 
 function App() {
+
+  const dataSource = useDatasource();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <WordCardList grid={grid} dataSource={dataSource}/>
     </div>
   );
 }
