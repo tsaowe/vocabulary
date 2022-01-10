@@ -18,7 +18,8 @@ db.transaction(tx => {
                      uid,
                      word,
                      createTime,
-                     description
+                     description,
+                     status
                  )`);
 });
 
@@ -32,8 +33,8 @@ chrome.contextMenus.create(
       db.transaction(tx => {
         tx.executeSql(
           `INSERT INTO ${tableName} (uid, word, createTime)
-                       VALUES (?, ?, ?)`,
-          [getUidString(16), info.selectionText, new Date().getTime()],
+                       VALUES (?, ?, ?, ?)`,
+          [getUidString(16), info.selectionText, new Date().getTime(), 0],
           () => {},
           (tx, err) => alert(err.message)
         );

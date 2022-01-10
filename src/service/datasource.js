@@ -10,6 +10,46 @@ export const updateDescription = (uid, description)=>{
   });
 }
 
+
+/**
+ * 0 => 不认识
+ * 1 => 认识
+ * -1 => 已删除
+ * @param uid
+ */
+export const updateFamiliarToKnow = (uid)=>{
+  db.transaction(tx => {
+    tx.executeSql(`update ${tableName}
+                   set status = ?
+                   where uid = ?`, [1, uid]);
+  });
+}
+
+export const updateFamiliarToUnKnow = (uid)=>{
+  db.transaction(tx => {
+    tx.executeSql(`update ${tableName}
+                   set status = ?
+                   where uid = ?`, [0, uid]);
+  });
+}
+
+
+export const updateFamiliarToDelete = (uid)=>{
+  db.transaction(tx => {
+    tx.executeSql(`update ${tableName}
+                   set status = ?
+                   where uid = ?`, [-1, uid]);
+  });
+}
+
+export const updateStatus = (uid, status)=>{
+  db.transaction(tx => {
+    tx.executeSql(`update ${tableName}
+                   set status = ?
+                   where uid = ?`, [status, uid]);
+  });
+}
+
 export const useDatasource = ()=>{
   // const [dataSource, setDataSource] = React.useState(R.repeat({
   //   word: 'demo',
