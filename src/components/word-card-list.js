@@ -10,7 +10,9 @@ export const WordCardList = (props)=>{
     renderItem={item => (
       <List.Item>
         <Card title={item.word}>
-          <div>{item.word}</div>
+          <div onClick={()=>{
+            console.log(JSON.stringify(item));
+          }}>{item.word}</div>
           <div>{moment(item.createTime).format('YYYY-MM-DD HH:mm:ss')}</div>
         </Card>
       </List.Item>
