@@ -67,7 +67,7 @@ export const WordCardItem = ({ item}) => {
         dot
         onClick={() => {
           Modal.confirm({
-            title: `are you sure delete this word '${item.word}'?`,
+            title: `Are you sure delete this word '${item.word}'?`,
             icon: null,
             content: null,
             okText: "Yes",
@@ -75,45 +75,46 @@ export const WordCardItem = ({ item}) => {
             async onOk() {
               deleteWord(item.uid);
               setDeleted(true);
-              message.success("删除成功");
+              message.success("delete success");
             }
           });
         }}
         color="red"
       >
-        <Card
-          extra={[
-            <Tag
-              style={extraIconStyle}
-              onClick={() => {
-                clickFunc(item.uid, 1);
-              }}
-              color="success"
-            >
-              <CheckCircleOutlined style={{ fontSize: 12 }}/>
-            </Tag>,
-            <Tag
-              onClick={() => {
-                clickFunc(item.uid, 0);
-              }}
-              style={extraIconStyle}
-              color="warning"
-            >
-              <ExclamationCircleOutlined style={{ fontSize: 12 }}/>
-            </Tag>,
-            <Tag
-              onClick={() => {
-                clickFunc(item.uid, -1);
-              }}
-              style={extraIconStyle}
-              color="error"
-            >
-              <CloseCircleOutlined style={{ fontSize: 12 }}/>
-            </Tag>
-          ]}
-          size="small"
-          title={
-            <span style={{ fontSize: 12 }}>
+        <div onClick={e=>e.stopPropagation()}>
+          <Card
+            extra={[
+              <Tag
+                style={extraIconStyle}
+                onClick={() => {
+                  clickFunc(item.uid, 1);
+                }}
+                color="success"
+              >
+                <CheckCircleOutlined style={{ fontSize: 12 }}/>
+              </Tag>,
+              <Tag
+                onClick={() => {
+                  clickFunc(item.uid, 0);
+                }}
+                style={extraIconStyle}
+                color="warning"
+              >
+                <ExclamationCircleOutlined style={{ fontSize: 12 }}/>
+              </Tag>,
+              <Tag
+                onClick={() => {
+                  clickFunc(item.uid, -1);
+                }}
+                style={extraIconStyle}
+                color="error"
+              >
+                <CloseCircleOutlined style={{ fontSize: 12 }}/>
+              </Tag>
+            ]}
+            size="small"
+            title={
+              <span style={{ fontSize: 12 }}>
             <Popconfirm
               icon={null}
               title={
@@ -136,29 +137,30 @@ export const WordCardItem = ({ item}) => {
               {word}
             </Popconfirm>
           </span>
-          }
-          style={{ maxWidth: 250, ...cardStyle }}
-        >
-          <Text type="secondary">
-            {moment(R.pathOr("", ["createTime"])(item)).format(
-              "YYYY-MM-DD HH:mm:ss"
-            )}
-          </Text>
-          <Paragraph
-            editable={{
-              onChange: async value => {
-                if (value?.trim?.() === description) {
-                  return;
-                }
-                updateDescription(item.uid, value);
-                setDescription(value);
-                await message.success("修改成功");
-              }
-            }}
+            }
+            style={{ maxWidth: 250, ...cardStyle }}
           >
-            {description}
-          </Paragraph>
-        </Card>
+            <Text type="secondary">
+              {moment(R.pathOr("", ["createTime"])(item)).format(
+                "YYYY-MM-DD HH:mm:ss"
+              )}
+            </Text>
+            <Paragraph
+              editable={{
+                onChange: async value => {
+                  if (value?.trim?.() === description) {
+                    return;
+                  }
+                  updateDescription(item.uid, value);
+                  setDescription(value);
+                  await message.success("update success");
+                }
+              }}
+            >
+              {description}
+            </Paragraph>
+          </Card>
+        </div>
       </Badge>
     </div>
   );
