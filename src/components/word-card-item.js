@@ -27,7 +27,10 @@ const { Paragraph, Text } = Typography;
 
 const extraIconStyle = { cursor: "pointer" };
 
-export const WordCardItem = ({ item, dataSource, setDataSource }) => {
+export const WordCardItem = ({ item}) => {
+
+  const [deleted, setDeleted] = React.useState(false);
+
   const [description, setDescription] = React.useState(
     item.description || "--"
   );
@@ -54,58 +57,63 @@ export const WordCardItem = ({ item, dataSource, setDataSource }) => {
     setStatus(status);
   };
 
+  if(deleted){
+    return null;
+  }
+
   return (
-    <Badge
-      dot
-      onClick={() => {
-        Modal.confirm({
-          title: "are you sure?",
-          icon: null,
-          content: null,
-          okText: "Yes",
-          cancelText: "No",
-          async onOk() {
-            deleteWord(item.uid);
-            await message.success("删除成功");
-            setDataSource(R.filter(R.propEq("uid", item.uid), dataSource));
-          }
-        });
-      }}
-      color="red"
-    >
-      <Card
-        extra={[
-          <Tag
-            style={extraIconStyle}
-            onClick={() => {
-              clickFunc(item.uid, 1);
-            }}
-            color="success"
-          >
-            <CheckCircleOutlined style={{ fontSize: 12 }} />
-          </Tag>,
-          <Tag
-            onClick={() => {
-              clickFunc(item.uid, 0);
-            }}
-            style={extraIconStyle}
-            color="warning"
-          >
-            <ExclamationCircleOutlined style={{ fontSize: 12 }} />
-          </Tag>,
-          <Tag
-            onClick={() => {
-              clickFunc(item.uid, -1);
-            }}
-            style={extraIconStyle}
-            color="error"
-          >
-            <CloseCircleOutlined style={{ fontSize: 12 }} />
-          </Tag>
-        ]}
-        size="small"
-        title={
-          <span style={{ fontSize: 12 }}>
+    <div key={item.uid}>
+      <Badge
+        dot
+        onClick={() => {
+          Modal.confirm({
+            title: `are you sure delete this word '${item.word}'?`,
+            icon: null,
+            content: null,
+            okText: "Yes",
+            cancelText: "No",
+            async onOk() {
+              deleteWord(item.uid);
+              setDeleted(true);
+              message.success("删除成功");
+            }
+          });
+        }}
+        color="red"
+      >
+        <Card
+          extra={[
+            <Tag
+              style={extraIconStyle}
+              onClick={() => {
+                clickFunc(item.uid, 1);
+              }}
+              color="success"
+            >
+              <CheckCircleOutlined style={{ fontSize: 12 }}/>
+            </Tag>,
+            <Tag
+              onClick={() => {
+                clickFunc(item.uid, 0);
+              }}
+              style={extraIconStyle}
+              color="warning"
+            >
+              <ExclamationCircleOutlined style={{ fontSize: 12 }}/>
+            </Tag>,
+            <Tag
+              onClick={() => {
+                clickFunc(item.uid, -1);
+              }}
+              style={extraIconStyle}
+              color="error"
+            >
+              <CloseCircleOutlined style={{ fontSize: 12 }}/>
+            </Tag>
+          ]}
+          size="small"
+          title={
+            <span style={{ fontSize: 12 }}>
             <Popconfirm
               icon={null}
               title={
@@ -128,29 +136,30 @@ export const WordCardItem = ({ item, dataSource, setDataSource }) => {
               {word}
             </Popconfirm>
           </span>
-        }
-        style={{ maxWidth: 250, ...cardStyle }}
-      >
-        <Text type="secondary">
-          {moment(R.pathOr("", ["createTime"])(item)).format(
-            "YYYY-MM-DD HH:mm:ss"
-          )}
-        </Text>
-        <Paragraph
-          editable={{
-            onChange: async value => {
-              if (value?.trim?.() === description) {
-                return;
-              }
-              updateDescription(item.uid, value);
-              setDescription(value);
-              await message.success("修改成功");
-            }
-          }}
+          }
+          style={{ maxWidth: 250, ...cardStyle }}
         >
-          {description}
-        </Paragraph>
-      </Card>
-    </Badge>
+          <Text type="secondary">
+            {moment(R.pathOr("", ["createTime"])(item)).format(
+              "YYYY-MM-DD HH:mm:ss"
+            )}
+          </Text>
+          <Paragraph
+            editable={{
+              onChange: async value => {
+                if (value?.trim?.() === description) {
+                  return;
+                }
+                updateDescription(item.uid, value);
+                setDescription(value);
+                await message.success("修改成功");
+              }
+            }}
+          >
+            {description}
+          </Paragraph>
+        </Card>
+      </Badge>
+    </div>
   );
 };

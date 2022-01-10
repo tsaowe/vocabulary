@@ -34,7 +34,7 @@ chrome.contextMenus.create(
         tx.executeSql(
           `INSERT INTO ${tableName} (uid, word, createTime, status)
                        VALUES (?, ?, ?, ?)`,
-          [getUidString(16), info.selectionText, new Date().getTime(), 0],
+          [getUidString(16), (info.selectionText || '').toLowerCase(), new Date().getTime(), 0],
           () => {},
           (tx, err) => alert(err.message)
         );
