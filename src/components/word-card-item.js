@@ -9,7 +9,7 @@ export const WordCardItem = ({item})=>{
 
   const [description, setDescription] = React.useState(item.description);
 
-  return <Card size="small" title={item.word} style={{width: 250}}>
+  return <Card size="small" title={item.word} style={{maxWidth: 250}}>
     <Text type="secondary">{moment(item.createTime).format('YYYY-MM-DD HH:mm:ss')}</Text>
     <Paragraph editable={{
       onChange: async (value) => {
