@@ -1,6 +1,10 @@
-import {Card, List} from "antd";
+import {Card, List, Typography, message} from "antd";
 import moment from "moment";
 import React from "react";
+import {updateDescription} from "../service/datasource";
+
+const { Paragraph, Text } = Typography;
+
 
 export const WordCardList = (props)=>{
   const {grid, dataSource} = props;
@@ -10,10 +14,13 @@ export const WordCardList = (props)=>{
     renderItem={item => (
       <List.Item>
         <Card title={item.word}>
-          <div onClick={()=>{
-            console.log(JSON.stringify(item));
-          }}>{item.word}</div>
-          <div>{moment(item.createTime).format('YYYY-MM-DD HH:mm:ss')}</div>
+          <Text type="secondary">{moment(item.createTime).format('YYYY-MM-DD HH:mm:ss')}</Text>
+          <Paragraph editable={{
+            onChange: async (value) => {
+              updateDescription(item.uid, value);
+              await message.success('修改成功');
+            }
+          }}>{item.description}</Paragraph>
         </Card>
       </List.Item>
     )}
