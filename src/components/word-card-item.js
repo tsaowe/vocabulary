@@ -13,6 +13,9 @@ export const WordCardItem = ({item})=>{
     <Text type="secondary">{moment(item.createTime).format('YYYY-MM-DD HH:mm:ss')}</Text>
     <Paragraph editable={{
       onChange: async (value) => {
+        if(value?.trim?.() === description){
+          return;
+        }
         updateDescription(item.uid, value);
         setDescription(value);
         await message.success('修改成功');
