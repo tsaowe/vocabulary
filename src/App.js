@@ -1,6 +1,7 @@
 import React from 'react';
 import {useDatasource} from "./service/datasource";
 import {WordCardList} from "./components/word-card-list";
+import './app.css';
 
 
 /******************************************************************************/
@@ -25,7 +26,7 @@ function App() {
   const dataSource = useDatasource();
 
   return (
-    <div>
+    <div className="container-wrap">
       <WordCardList grid={grid} dataSource={dataSource}/>
     </div>
   );
