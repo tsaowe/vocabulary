@@ -5,7 +5,7 @@ import { WordCardItem } from "./word-card-item";
 export const WordCardList = props => {
   const { grid } = props;
 
-  const [dataSource, setDataSource] = React.useState(props.dataSource);
+  const [dataSource, setDataSource] = useState(props.dataSource);
 
   useEffect(()=>{
     setDataSource(props.dataSource);

@@ -79,13 +79,13 @@ export const updateStatus = (uid, status) => {
 };
 
 export const useDatasource = () => {
-  // const [dataSource, setDataSource] = React.useState(R.repeat({
-  //   word: 'demo',
-  //   createTime: new Date().getTime(),
-  //   uid: 'xxx',
-  //   description: 'inter & twined'
-  // }, 100));
-  const [dataSource, setDataSource] = React.useState([]);
+  const inChromeExtensionNewTab = window.location.href.indexOf("chrome-extension://") === 0;
+  const [dataSource, setDataSource] = React.useState(inChromeExtensionNewTab ? [] : R.repeat({
+    word: 'demo',
+    createTime: new Date().getTime(),
+    uid: 'xxx',
+    description: 'inter & twined'
+  }, 100));
   useEffect(() => {
     db.transaction(function(tx) {
       tx.executeSql(

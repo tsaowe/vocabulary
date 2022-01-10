@@ -85,6 +85,7 @@ export const WordCardItem = ({ item}) => {
           <Card
             extra={[
               <Tag
+                key={1}
                 style={extraIconStyle}
                 onClick={() => {
                   clickFunc(item.uid, 1);
@@ -94,6 +95,7 @@ export const WordCardItem = ({ item}) => {
                 <CheckCircleOutlined style={{ fontSize: 12 }}/>
               </Tag>,
               <Tag
+                key={2}
                 onClick={() => {
                   clickFunc(item.uid, 0);
                 }}
@@ -103,6 +105,7 @@ export const WordCardItem = ({ item}) => {
                 <ExclamationCircleOutlined style={{ fontSize: 12 }}/>
               </Tag>,
               <Tag
+                key={3}
                 onClick={() => {
                   clickFunc(item.uid, -1);
                 }}
@@ -138,7 +141,7 @@ export const WordCardItem = ({ item}) => {
             </Popconfirm>
           </span>
             }
-            style={{ maxWidth: 250, ...cardStyle }}
+            style={{ width: 300, ...cardStyle }}
           >
             <Text type="secondary">
               {moment(R.pathOr("", ["createTime"])(item)).format(
