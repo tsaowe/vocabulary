@@ -65,6 +65,7 @@ export const WordCardItem = ({ item}) => {
     <div key={item.uid}>
       <Badge
         dot
+        style={extraIconStyle}
         onClick={() => {
           Modal.confirm({
             title: `Are you sure delete this word '${item.word}'?`,
