@@ -11,12 +11,13 @@ export const updateDescription = (uid, description)=>{
 }
 
 export const useDatasource = ()=>{
-  const [dataSource, setDataSource] = React.useState(R.repeat({
-    word: 'demo',
-    createTime: new Date().getTime(),
-    uid: 'xxx',
-    description: 'inter & twined'
-  }, 100));
+  // const [dataSource, setDataSource] = React.useState(R.repeat({
+  //   word: 'demo',
+  //   createTime: new Date().getTime(),
+  //   uid: 'xxx',
+  //   description: 'inter & twined'
+  // }, 100));
+  const [dataSource, setDataSource] = React.useState([]);
   useEffect(()=>{
     db.transaction(function (tx) {
       tx.executeSql(`SELECT * FROM ${tableName} order by createTime DESC`, [], function (tx, results) {
