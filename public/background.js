@@ -32,7 +32,7 @@ chrome.contextMenus.create(
     onclick: async info => {
       db.transaction(tx => {
         tx.executeSql(
-          `INSERT INTO ${tableName} (uid, word, createTime)
+          `INSERT INTO ${tableName} (uid, word, createTime, status)
                        VALUES (?, ?, ?, ?)`,
           [getUidString(16), info.selectionText, new Date().getTime(), 0],
           () => {},

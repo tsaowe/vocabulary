@@ -1,18 +1,24 @@
-import {List} from "antd";
+import { List } from "antd";
 import React from "react";
-import {WordCardItem} from "./word-card-item";
+import { WordCardItem } from "./word-card-item";
 
-
-
-export const WordCardList = (props)=>{
-  const {grid, dataSource} = props;
-  return <List
-    grid={grid}
-    dataSource={dataSource}
-    renderItem={item => (
-      <List.Item>
-        <WordCardItem item={item}/>
-      </List.Item>
-    )}
-  />
-}
+export const WordCardList = props => {
+  const { grid } = props;
+  const [dataSource, setDataSource] = React.useState(props.dataSource);
+  return (
+    <List
+      grid={grid}
+      dataSource={dataSource}
+      renderItem={(item, index) => (
+        <List.Item>
+          <WordCardItem
+            index={index}
+            dataSource={dataSource}
+            setDataSource={setDataSource}
+            item={item}
+          />
+        </List.Item>
+      )}
+    />
+  );
+};
