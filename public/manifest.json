@@ -1,6 +1,6 @@
 {
-  "name": "曹巍的生词本",
-  "description": "添加日常不熟悉的单词",
+  "name": "Max's Vocabulary Book",
+  "description": "Add your own words to the book shelf",
   "version": "1.0",
   "manifest_version": 2,
   "background": {
