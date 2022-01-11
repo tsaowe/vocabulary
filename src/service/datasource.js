@@ -1,81 +1,23 @@
-import React, { useEffect } from "react";
+import React, {useEffect} from "react";
 import * as R from "ramda";
 
-const db = openDatabase("vocabulary", "1.0", "vocabulary", 1024 * 1024 * 10);
-const tableName = "RightClickAction";
+import {db} from '../model/db'
 
-export const updateDescription = (uid, description) => {
-  db.transaction(tx => {
-    tx.executeSql(`update ${tableName} set description = ? where uid = ?`, [
-      description,
-      uid
-    ]);
-  });
+export const updateDescription = (id, description) => {
+  db.words.update(id, {description})
 };
 
-export const updateWord = (uid, word) => {
-  db.transaction(tx => {
-    tx.executeSql(`update ${tableName} set word = ? where uid = ?`, [
-      word,
-      uid
-    ]);
-  });
+export const updateWord = (id, word) => {
+  db.words.update(id, {word})
 };
 
-export const deleteWord = uid => {
-  db.transaction(tx => {
-    tx.executeSql(`delete from ${tableName} where uid = ?`, [uid]);
-  });
+export const deleteWord = id => {
+  db.words.where("id").equals(id).delete();
 };
 
-/**
- * 0 => 不认识
- * 1 => 认识
- * -1 => 已删除
- * @param uid
- */
-export const updateFamiliarToKnow = uid => {
-  db.transaction(tx => {
-    tx.executeSql(
-      `update ${tableName}
-                   set status = ?
-                   where uid = ?`,
-      [1, uid]
-    );
-  });
-};
 
-export const updateFamiliarToUnKnow = uid => {
-  db.transaction(tx => {
-    tx.executeSql(
-      `update ${tableName}
-                   set status = ?
-                   where uid = ?`,
-      [0, uid]
-    );
-  });
-};
-
-export const updateFamiliarToDelete = uid => {
-  db.transaction(tx => {
-    tx.executeSql(
-      `update ${tableName}
-                   set status = ?
-                   where uid = ?`,
-      [-1, uid]
-    );
-  });
-};
-
-export const updateStatus = (uid, status) => {
-  db.transaction(tx => {
-    tx.executeSql(
-      `update ${tableName}
-                   set status = ?
-                   where uid = ?`,
-      [status, uid]
-    );
-  });
+export const updateStatus = (id, status) => {
+  db.words.update(id, {status})
 };
 
 export const useDatasource = () => {
@@ -83,21 +25,11 @@ export const useDatasource = () => {
   const [dataSource, setDataSource] = React.useState(inChromeExtensionNewTab ? [] : R.repeat({
     word: 'demo',
     createTime: new Date().getTime(),
-    uid: 'xxx',
+    id: 'xxx',
     description: 'inter & twined'
   }, 100));
   useEffect(() => {
-    db.transaction(function(tx) {
-      tx.executeSql(
-        `SELECT * FROM ${tableName} order by createTime DESC`,
-        [],
-        function(tx, results) {
-          const list = results.rows;
-          setDataSource(list);
-        },
-        null
-      );
-    });
+    db.words.toArray().then(setDataSource);
   }, [setDataSource]);
 
   return dataSource;

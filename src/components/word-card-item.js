@@ -52,8 +52,8 @@ export const WordCardItem = ({ item}) => {
 
   const [word, setWord] = React.useState(item.word);
 
-  const clickFunc = (uid, status) => {
-    updateStatus(uid, status);
+  const clickFunc = (id, status) => {
+    updateStatus(id, status);
     setStatus(status);
   };
 
@@ -62,7 +62,7 @@ export const WordCardItem = ({ item}) => {
   }
 
   return (
-    <div key={item.uid}>
+    <div key={item.id}>
       <Badge
         dot
         style={extraIconStyle}
@@ -74,7 +74,7 @@ export const WordCardItem = ({ item}) => {
             okText: "Yes",
             cancelText: "No",
             async onOk() {
-              deleteWord(item.uid);
+              deleteWord(item.id);
               setDeleted(true);
               message.success("delete success");
             }
@@ -89,7 +89,7 @@ export const WordCardItem = ({ item}) => {
                 key={1}
                 style={extraIconStyle}
                 onClick={() => {
-                  clickFunc(item.uid, 1);
+                  clickFunc(item.id, 1);
                 }}
                 color="success"
               >
@@ -98,7 +98,7 @@ export const WordCardItem = ({ item}) => {
               <Tag
                 key={2}
                 onClick={() => {
-                  clickFunc(item.uid, 0);
+                  clickFunc(item.id, 0);
                 }}
                 style={extraIconStyle}
                 color="warning"
@@ -108,7 +108,7 @@ export const WordCardItem = ({ item}) => {
               <Tag
                 key={3}
                 onClick={() => {
-                  clickFunc(item.uid, -1);
+                  clickFunc(item.id, -1);
                 }}
                 style={extraIconStyle}
                 color="error"
@@ -131,7 +131,7 @@ export const WordCardItem = ({ item}) => {
               }
               onConfirm={() => {
                 if (word) {
-                  updateWord(item.uid, word);
+                  updateWord(item.id, word);
                   setWord(word);
                 }
               }}
@@ -155,7 +155,7 @@ export const WordCardItem = ({ item}) => {
                   if (value?.trim?.() === description) {
                     return;
                   }
-                  updateDescription(item.uid, value);
+                  updateDescription(item.id, value);
                   setDescription(value);
                   await message.success("update success");
                 }
