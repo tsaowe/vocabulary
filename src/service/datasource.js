@@ -29,7 +29,7 @@ export const useDatasource = () => {
     description: 'inter & twined'
   }, 100));
   useEffect(() => {
-    db.words.toArray().then(setDataSource);
+    db.words.reverse().toArray().then(setDataSource);
   }, [setDataSource]);
 
   return dataSource;

@@ -11,12 +11,16 @@ chrome.contextMenus.create(
     id: "addToShelf",
     contexts: ["all"],
     onclick: async info => {
-      db.words.add({
-        word: (info.selectionText || '').toLowerCase(),
-        createTime: new Date().getTime(),
-        description: '',
-        status: 0,
-      });
+      const word = (info.selectionText || '').toLowerCase();
+      const existing = await db.words.where("word").equals(word).count() > 0;
+      if (!existing) {
+        db.words.add({
+          word,
+          createTime: new Date().getTime(),
+          description: '',
+          status: 0,
+        });
+      }
     }
   },
   function() {
