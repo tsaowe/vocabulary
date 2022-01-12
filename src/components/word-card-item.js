@@ -1,6 +1,4 @@
 import React from "react";
-import moment from "moment";
-import * as R from "ramda";
 import {
   deleteWord,
   updateDescription,
@@ -22,20 +20,18 @@ import {
   CloseCircleOutlined,
   ExclamationCircleOutlined
 } from "@ant-design/icons";
+import "./word-card-item.css";
 
-const { Paragraph, Text } = Typography;
+const { Paragraph } = Typography;
 
 const extraIconStyle = { cursor: "pointer" };
 
 export const WordCardItem = ({ item: outerItem }) => {
-
   const [item, setItem] = React.useState(outerItem);
 
   const [deleted, setDeleted] = React.useState(false);
 
-  const [description, setDescription] = React.useState(
-    item.description || ""
-  );
+  const [description, setDescription] = React.useState(item.description || "");
   const [status, setStatus] = React.useState(item.status);
   let cardStyle;
   switch (status) {
@@ -120,38 +116,32 @@ export const WordCardItem = ({ item: outerItem }) => {
             ]}
             size="small"
             title={
-              <span style={{ fontSize: 12 }}>
-                <Popconfirm
-                  icon={null}
-                  title={
-                    <Input
-                      defaultValue={item.word}
-                      onChange={e => {
-                        setWord(e.target.value?.trim?.());
-                      }}
-                    />
+              <Popconfirm
+                icon={null}
+                title={
+                  <Input
+                    defaultValue={item.word}
+                    onChange={e => {
+                      setWord(e.target.value?.trim?.());
+                    }}
+                  />
+                }
+                onConfirm={() => {
+                  if (word) {
+                    updateWord(item.id, word);
+                    setItem({ ...item, word });
                   }
-                  onConfirm={() => {
-                    if (word) {
-                      updateWord(item.id, word);
-                      setItem({...item, word });
-                    }
-                  }}
-                  okText="Yes"
-                  cancelText="No"
-                >
-                  {item.word}
-                </Popconfirm>
-              </span>
+                }}
+                okText="Yes"
+                cancelText="No"
+              >
+                {item.word}
+              </Popconfirm>
             }
-            style={{ width: 300, ...cardStyle }}
+            style={{ width: 250, height: 90, ...cardStyle }}
           >
-            <Text type="secondary">
-              {moment(R.pathOr("", ["createTime"])(item)).format(
-                "YYYY-MM-DD HH:mm:ss"
-              )}
-            </Text>
             <Paragraph
+              style={{ fontSize: 12 }}
               editable={{
                 onChange: async value => {
                   if (value?.trim?.() === description) {

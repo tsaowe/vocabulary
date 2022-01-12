@@ -1,0 +1,11 @@
+.ant-card-extra .ant-tag{
+    padding: 0;
+    border: none;
+    display: inline;
+    margin: 0 2px;
+    background: transparent;
+}
+
+.ant-badge-status .ant-card-small>.ant-card-body {
+    padding: 6px 12px;
+}

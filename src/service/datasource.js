@@ -39,10 +39,12 @@ export const useDatasource = () => {
         )
   );
   useEffect(() => {
-    db.words
-      .reverse()
-      .toArray()
-      .then(setDataSource);
+    if(window.location.href.indexOf("chrome-extension://") === 0){
+      db.words
+        .reverse()
+        .toArray()
+        .then(setDataSource);
+    }
   }, [setDataSource]);
 
   return dataSource;

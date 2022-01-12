@@ -6,17 +6,17 @@ const grid = {
   //  distance between two card
   gutter: 16,
   // < 576px
-  xs: 1,
+  xs: 2,
   // < 768px
-  sm: 1,
+  sm: 3,
   // < 992px
-  md: 2,
+  md: 3,
   // < 1200px
-  lg: 3,
+  lg: 4,
   // < 1600px
-  xl: 4,
+  xl: 5,
   // >= 1600px
-  xxl: 6
+  xxl: 7
 };
 
 export const WordCardList = props => {
