@@ -1,7 +1,7 @@
-import Dexie from 'dexie';
+import Dexie from "dexie";
 
-export const db = new Dexie('vocabulary');
+export const db = new Dexie("vocabulary");
 
 db.version(1).stores({
-  words: '++id, word, createTime, description, status',
+  words: "++id, word, createTime, description, status"
 });

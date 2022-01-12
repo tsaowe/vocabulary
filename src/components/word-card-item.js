@@ -27,8 +27,7 @@ const { Paragraph, Text } = Typography;
 
 const extraIconStyle = { cursor: "pointer" };
 
-export const WordCardItem = ({ item}) => {
-
+export const WordCardItem = ({ item }) => {
   const [deleted, setDeleted] = React.useState(false);
 
   const [description, setDescription] = React.useState(
@@ -57,7 +56,7 @@ export const WordCardItem = ({ item}) => {
     setStatus(status);
   };
 
-  if(deleted){
+  if (deleted) {
     return null;
   }
 
@@ -82,7 +81,7 @@ export const WordCardItem = ({ item}) => {
         }}
         color="red"
       >
-        <div onClick={e=>e.stopPropagation()}>
+        <div onClick={e => e.stopPropagation()}>
           <Card
             extra={[
               <Tag
@@ -93,7 +92,7 @@ export const WordCardItem = ({ item}) => {
                 }}
                 color="success"
               >
-                <CheckCircleOutlined style={{ fontSize: 12 }}/>
+                <CheckCircleOutlined style={{ fontSize: 12 }} />
               </Tag>,
               <Tag
                 key={2}
@@ -103,7 +102,7 @@ export const WordCardItem = ({ item}) => {
                 style={extraIconStyle}
                 color="warning"
               >
-                <ExclamationCircleOutlined style={{ fontSize: 12 }}/>
+                <ExclamationCircleOutlined style={{ fontSize: 12 }} />
               </Tag>,
               <Tag
                 key={3}
@@ -113,34 +112,34 @@ export const WordCardItem = ({ item}) => {
                 style={extraIconStyle}
                 color="error"
               >
-                <CloseCircleOutlined style={{ fontSize: 12 }}/>
+                <CloseCircleOutlined style={{ fontSize: 12 }} />
               </Tag>
             ]}
             size="small"
             title={
               <span style={{ fontSize: 12 }}>
-            <Popconfirm
-              icon={null}
-              title={
-                <Input
-                  defaultValue={item.word}
-                  onChange={e => {
-                    setWord(e.target.value?.trim?.());
+                <Popconfirm
+                  icon={null}
+                  title={
+                    <Input
+                      defaultValue={item.word}
+                      onChange={e => {
+                        setWord(e.target.value?.trim?.());
+                      }}
+                    />
+                  }
+                  onConfirm={() => {
+                    if (word) {
+                      updateWord(item.id, word);
+                      setWord(word);
+                    }
                   }}
-                />
-              }
-              onConfirm={() => {
-                if (word) {
-                  updateWord(item.id, word);
-                  setWord(word);
-                }
-              }}
-              okText="Yes"
-              cancelText="No"
-            >
-              {word}
-            </Popconfirm>
-          </span>
+                  okText="Yes"
+                  cancelText="No"
+                >
+                  {word}
+                </Popconfirm>
+              </span>
             }
             style={{ width: 300, ...cardStyle }}
           >

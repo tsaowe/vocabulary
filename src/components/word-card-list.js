@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { List } from "antd";
 import { WordCardItem } from "./word-card-item";
 
@@ -20,13 +20,11 @@ const grid = {
 };
 
 export const WordCardList = props => {
-
   const [dataSource, setDataSource] = useState(props.dataSource);
 
-  useEffect(()=>{
+  useEffect(() => {
     setDataSource(props.dataSource);
-  },[props.dataSource, setDataSource])
-
+  }, [props.dataSource, setDataSource]);
 
   return (
     <List

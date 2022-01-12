@@ -3,7 +3,6 @@ import { useDatasource } from "./service/datasource";
 import { WordCardList } from "./components/word-card-list";
 import "./app.css";
 
-
 function App() {
   const dataSource = useDatasource();
 
