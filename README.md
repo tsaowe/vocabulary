@@ -1,7 +1,11 @@
 ### what is this ?
- this is a chrome extension that allow you to add your unrecognized words to a dictionary.
+ this is a chrome extension that allow you to add your unrecognized words to your local vocabulary bookshelf.
  and every time you open the new tab in chrome, you will see the words you have added.
 
+### keywords
+- vocabulary
+- dictionary
+- chrome extension
 
 ### features
 - color the words you have added
@@ -35,3 +39,12 @@ yarn build
 
 
 ![list](./assets/list.png)
+
+
+### npn library
+- create-react-app
+- antd
+- react-router
+- ramda
+- moment
+- Dexie
