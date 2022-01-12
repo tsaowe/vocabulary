@@ -7,7 +7,7 @@ db.version(1).stores({
 chrome.contextMenus.create(
   {
     type: "normal",
-    title: "添加到书架",
+    title: "add to my vocabulary",
     id: "addToShelf",
     contexts: ["all"],
     onclick: async info => {
