@@ -1,5 +1,6 @@
 const db = new Dexie('vocabulary');
-
+const context = document.querySelector("body");
+const instance = new Mark(context);
 db.version(1).stores({
   words: '++id, word, createTime, description, status',
 });
@@ -20,6 +21,7 @@ chrome.contextMenus.create(
           description: '',
           status: 0,
         });
+        instance.mark(word);
       }
     }
   },

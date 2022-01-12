@@ -4,8 +4,13 @@
   "version": "1.0",
   "manifest_version": 2,
   "background": {
-    "scripts": ["./dexie.js", "./background.js"]
+    "scripts": ["./dexie.js", "./mark.min.js", "./background.js"]
   },
+  "content_scripts": [{
+    "run_at": "document_end",
+    "matches": ["*://*/*"],
+    "js": ["./dexie.js", "./mark.min.js", "page.js"]
+  }],
   "permissions": [
     "contextMenus",
     "storage",
