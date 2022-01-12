@@ -7,7 +7,6 @@ db.version(1).stores({
 const context = document.querySelector("body");
 const instance = new Mark(context);
 db.words.reverse().toArray().then(list=>{
-  console.log(`<${'='.repeat(30)} page.js:10 ${'='.repeat(30)}>`, list);
   list.forEach(item=>{
     instance.mark(item.word);
   })
