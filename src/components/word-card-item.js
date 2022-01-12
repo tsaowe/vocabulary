@@ -34,7 +34,7 @@ export const WordCardItem = ({ item: outerItem }) => {
   const [deleted, setDeleted] = React.useState(false);
 
   const [description, setDescription] = React.useState(
-    item.description || "--"
+    item.description || ""
   );
   const [status, setStatus] = React.useState(item.status);
   let cardStyle;
