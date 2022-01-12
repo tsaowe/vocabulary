@@ -4,8 +4,14 @@
   "version": "1.0",
   "manifest_version": 2,
   "background": {
-    "scripts": ["./dexie.js", "./background.js"]
+    "scripts": ["./mark.min.js", "./dexie.js", "./background.js"]
   },
+  "web_accessible_resources": [
+    "mark.min.js",
+    "dexie.js",
+    "page.js",
+    "inject.js"
+  ],
   "permissions": [
     "contextMenus",
     "storage",
