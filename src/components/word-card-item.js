@@ -27,7 +27,10 @@ const { Paragraph, Text } = Typography;
 
 const extraIconStyle = { cursor: "pointer" };
 
-export const WordCardItem = ({ item }) => {
+export const WordCardItem = ({ item: outerItem }) => {
+
+  const [item, setItem] = React.useState(outerItem);
+
   const [deleted, setDeleted] = React.useState(false);
 
   const [description, setDescription] = React.useState(
@@ -131,13 +134,13 @@ export const WordCardItem = ({ item }) => {
                   onConfirm={() => {
                     if (word) {
                       updateWord(item.id, word);
-                      setWord(word);
+                      setItem({...item, word });
                     }
                   }}
                   okText="Yes"
                   cancelText="No"
                 >
-                  {word}
+                  {item.word}
                 </Popconfirm>
               </span>
             }
