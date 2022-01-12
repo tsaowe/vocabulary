@@ -1,6 +1,16 @@
 ### what is this ?
  this is a chrome extension that allow you to add your unrecognized words to a dictionary.
  and every time you open the new tab in chrome, you will see the words you have added.
+
+
+### features
+- color the words you have added
+- add words to the dictionary
+- change the opacity of the words you have added
+- remove words from the dictionary
+- add description to the words
+- modify the word if you want
+
  
 
 ### how to build local package?
@@ -8,7 +18,7 @@
 git clone git@github.com:tsaowe/vocabulary.git
 cd vocabulary
 yarn install
-npm run build
+yarn build
 ```
 
 ### how to install on chrome [chrome://extensions/](chrome://extensions/)
