@@ -16,7 +16,7 @@ const grid = {
   // < 1600px
   xl: 5,
   // >= 1600px
-  xxl: 7
+  xxl: 6
 };
 
 export const WordCardList = props => {

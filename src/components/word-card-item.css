@@ -9,3 +9,12 @@
 .ant-badge-status .ant-card-small>.ant-card-body {
     padding: 6px 12px;
 }
+
+.ant-badge{
+    transition: all .1s;
+}
+
+.ant-badge:hover{
+    transform: scale(1.02);
+    box-shadow: 0 2px 0 2px rgba(255, 255, 255, 0.2);
+}
