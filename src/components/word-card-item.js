@@ -7,18 +7,16 @@ import {
 } from "../service/datasource";
 import {
   Card,
-  message,
   Typography,
   Tag,
-  Popconfirm,
-  Input,
   Badge,
   Modal
 } from "antd";
 import {
   CheckCircleOutlined,
   CloseCircleOutlined,
-  ExclamationCircleOutlined
+  ExclamationCircleOutlined,
+  HighlightOutlined,
 } from "@ant-design/icons";
 import "./word-card-item.css";
 
@@ -48,8 +46,6 @@ export const WordCardItem = ({ item: outerItem }) => {
       cardStyle = { background: "purple" };
   }
 
-  const [word, setWord] = React.useState(item.word);
-
   const clickFunc = (id, status) => {
     updateStatus(id, status);
     setStatus(status);
@@ -74,7 +70,6 @@ export const WordCardItem = ({ item: outerItem }) => {
             async onOk() {
               deleteWord(item.id);
               setDeleted(true);
-              message.success("delete success");
             }
           });
         }}
@@ -116,27 +111,20 @@ export const WordCardItem = ({ item: outerItem }) => {
             ]}
             size="small"
             title={
-              <Popconfirm
-                icon={null}
-                title={
-                  <Input
-                    defaultValue={item.word}
-                    onChange={e => {
-                      setWord(e.target.value?.trim?.());
-                    }}
-                  />
-                }
-                onConfirm={() => {
-                  if (word) {
-                    updateWord(item.id, word);
-                    setItem({ ...item, word });
-                  }
+              <Paragraph
+                editable={{
+                  icon: <HighlightOutlined />,
+                  tooltip: 'click to edit word',
+                  onChange(text){
+                    if (text) {
+                      updateWord(item.id, text);
+                      setItem({ ...item, word: text });
+                    }
+                  },
                 }}
-                okText="Yes"
-                cancelText="No"
               >
                 {item.word}
-              </Popconfirm>
+              </Paragraph>
             }
             style={{ width: 250, height: 90, ...cardStyle }}
           >
@@ -149,7 +137,6 @@ export const WordCardItem = ({ item: outerItem }) => {
                   }
                   updateDescription(item.id, value);
                   setDescription(value);
-                  await message.success("update success");
                 }
               }}
             >
