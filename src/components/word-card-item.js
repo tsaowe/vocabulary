@@ -29,7 +29,7 @@ export const WordCardItem = ({ item: outerItem }) => {
   let cardStyle;
   switch (status) {
     case -1:
-      cardStyle = { opacity: 0.5 };
+      cardStyle = { opacity: 0.2 };
       break;
     case 0:
       cardStyle = { background: "#FFFBE4" };
@@ -57,7 +57,7 @@ export const WordCardItem = ({ item: outerItem }) => {
         style={extraIconStyle}
         onClick={() => {
           Modal.confirm({
-            title: `Are you sure delete this word '${item.word}'?`,
+            title: `Delete '${item.word}'?`,
             icon: null,
             content: null,
             okText: "Yes",
@@ -119,7 +119,7 @@ export const WordCardItem = ({ item: outerItem }) => {
               <Paragraph
                 editable={{
                   icon: <HighlightOutlined />,
-                  tooltip: "click to edit word",
+                  tooltip: "Edit",
                   onChange(text) {
                     if (text) {
                       updateWord(item.id, text);
