@@ -10,7 +10,8 @@ import {
   CheckCircleOutlined,
   CloseCircleOutlined,
   ExclamationCircleOutlined,
-  HighlightOutlined
+  HighlightOutlined,
+  MobileTwoTone,
 } from "@ant-design/icons";
 import "./word-card-item.css";
 
@@ -92,6 +93,16 @@ export const WordCardItem = ({ item: outerItem }) => {
               >
                 <ExclamationCircleOutlined style={{ fontSize: 12 }} />
               </Tag>,
+              <Tag
+                key={3}
+                onClick={() => {
+                  fetch(`https://api.day.app/fBxLdXi5AcZV7QYbTb2vj6/${item.word}/${item.description}?sound=paymentsuccess&icon=https://avatars.githubusercontent.com/u/1531330?s=96&v=4`);
+                }}
+                style={extraIconStyle}
+                color="error">
+                <MobileTwoTone style={{ fontSize: 12 }}/>
+              </Tag>
+              ,
               <Tag
                 key={3}
                 onClick={() => {
