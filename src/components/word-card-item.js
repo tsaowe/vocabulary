@@ -5,18 +5,12 @@ import {
   updateStatus,
   updateWord
 } from "../service/datasource";
-import {
-  Card,
-  Typography,
-  Tag,
-  Badge,
-  Modal
-} from "antd";
+import { Card, Typography, Tag, Badge, Modal } from "antd";
 import {
   CheckCircleOutlined,
   CloseCircleOutlined,
   ExclamationCircleOutlined,
-  HighlightOutlined,
+  HighlightOutlined
 } from "@ant-design/icons";
 import "./word-card-item.css";
 
@@ -114,13 +108,13 @@ export const WordCardItem = ({ item: outerItem }) => {
               <Paragraph
                 editable={{
                   icon: <HighlightOutlined />,
-                  tooltip: 'click to edit word',
-                  onChange(text){
+                  tooltip: "click to edit word",
+                  onChange(text) {
                     if (text) {
                       updateWord(item.id, text);
                       setItem({ ...item, word: text });
                     }
-                  },
+                  }
                 }}
               >
                 {item.word}

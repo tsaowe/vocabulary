@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 const db = new Dexie("vocabulary");
 
 db.version(1).stores({
