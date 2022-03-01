@@ -96,7 +96,7 @@ export const WordCardItem = ({ item: outerItem }) => {
               <Tag
                 key={3}
                 onClick={() => {
-                  fetch(`https://api.day.app/fBxLdXi5AcZV7QYbTb2vj6/${item.word}/${item.description}?sound=paymentsuccess&icon=https://avatars.githubusercontent.com/u/1531330?s=96&v=4`).then(()=>{
+                  fetch(`https://api.day.app/fBxLdXi5AcZV7QYbTb2vj6/${item.word}/${description}?sound=paymentsuccess&icon=https://avatars.githubusercontent.com/u/1531330?s=96&v=4`).then(()=>{
                     message.success(`"${item.word}" has been sent to your phone!`).then();
                   });
                 }}
