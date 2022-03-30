@@ -11,6 +11,26 @@ export const updateWord = (id, word) => {
   db.words.update(id, { word });
 };
 
+export const findWord = (word) => {
+  return db.words.find(word);
+};
+
+export const addWord = (word) => {
+  return new Promise((resolve) => {
+    db.words.add({
+      word,
+      createTime: new Date().getTime(),
+      description: "",
+      status: 0
+    }).then((id) => {
+      db.words.where({id}).toArray().then(([word]) => {
+        resolve(word);
+      });
+    });
+  });
+
+};
+
 export const deleteWord = id => {
   db.words
     .where("id")
