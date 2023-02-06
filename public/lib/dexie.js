@@ -10,7 +10,7 @@
  *
  * Apache License Version 2.0, January 2004, http://www.apache.org/licenses/
  */
- 
+
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
     typeof define === 'function' && define.amd ? define(factory) :
@@ -5166,4 +5166,3 @@
     return Dexie$1;
 
 }));
-//# sourceMappingURL=dexie.js.map
